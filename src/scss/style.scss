@@ -1,2 +1,6 @@
-@import './normalize.scss';
-@import './sections/modals.scss';
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+@import "./normalize.scss";
+@import "./sections/header.scss";
+@import "./sections/modals.scss";

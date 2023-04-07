@@ -1,13 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<body>
-<!-- Login modal -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <title>Medical Clinic</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__container">
+          <a class="header__logo" href="#">Medical Clinic</a>
+          <div class="header__buttons">
+            <a class="header__button header__button--login" href="#">Log in</a>
+            <a class="header__button header__button--visit" href="#"
+              >Create visit</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="filter-section">
+      <div class="container">
+        <div class="filter-form">
+          <input
+            class="filter-form__input"
+            type="text"
+            placeholder="Search by title"
+          />
+          <select name="cards" id="cards" class="filter-form__select">
+            <option class="filter-form__option">all</option>
+            <option class="filter-form__option">open</option>
+            <option class="filter-form__option">done</option>
+          </select>
+          <select name="urgency" id="urgency" class="filter-form__select">
+            <option class="filter-form__option">all</option>
+            <option class="filter-form__option">high</option>
+            <option class="filter-form__option">normal</option>
+            <option class="filter-form__option">low</option>
+          </select>
+          <button class="filter-form__button" type="submit">Search</button>
+        </div>
+      </div>
+    </section>
+    <!-- Login modal -->
 
     <!-- <div class="modal">
       <form action="#" class="modal__form">
@@ -20,7 +63,7 @@
       </form>
     </div> -->
 
-<!-- Create visit modal -->
+    <!-- Create visit modal -->
 
     <!-- <div class="modal">
       <form action="#" class="modal__form">
@@ -47,5 +90,5 @@
         <button class="modal__button">Create visit</button>
       </form>
     </div> -->
-</body>
+  </body>
 </html>
