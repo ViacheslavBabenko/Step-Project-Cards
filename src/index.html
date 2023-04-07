@@ -4,9 +4,52 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <title>Medical Clinic</title>
   </head>
   <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__container">
+          <a class="header__logo" href="#">Medical Clinic</a>
+          <div class="header__buttons">
+            <a class="header__button header__button--login" href="#">Log in</a>
+            <a class="header__button header__button--visit" href="#"
+              >Create visit</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="filter-section">
+      <div class="container">
+        <div class="filter-form">
+          <input
+            class="filter-form__input"
+            type="text"
+            placeholder="Search by title"
+          />
+          <select name="cards" id="cards" class="filter-form__select">
+            <option class="filter-form__option">all</option>
+            <option class="filter-form__option">open</option>
+            <option class="filter-form__option">done</option>
+          </select>
+          <select name="urgency" id="urgency" class="filter-form__select">
+            <option class="filter-form__option">all</option>
+            <option class="filter-form__option">high</option>
+            <option class="filter-form__option">normal</option>
+            <option class="filter-form__option">low</option>
+          </select>
+          <button class="filter-form__button" type="submit">Search</button>
+        </div>
+      </div>
+    </section>
     <section class="cards-field">
       <div class="container">
         <div class="cards-wrap">
@@ -21,9 +64,15 @@
               <p class="card-item__doctor">pediatrician</p>
 
               <div class="card-item__info">
-                <p class="info__descr info__descr--objective">The purpose of the visit</p>
-                <p class="info__descr info__descr--short">The brief description of the visit</p>
-                <p class="info__descr info__descr--urgency">Urgency: <span>high</span></p>
+                <p class="info__descr info__descr--objective">
+                  The purpose of the visit
+                </p>
+                <p class="info__descr info__descr--short">
+                  The brief description of the visit
+                </p>
+                <p class="info__descr info__descr--urgency">
+                  Urgency: <span>high</span>
+                </p>
               </div>
 
               <div class="card-item__buttons">
@@ -67,9 +116,7 @@
         </div>
       </div>
     </section>
-
     <!-- Login modal -->
-
     <!-- <div class="modal">
       <form action="#" class="modal__form">
         <h2 class="modal__name">Log in</h2>
@@ -80,9 +127,7 @@
         <button class="modal__button">Log in</button>
       </form>
     </div> -->
-
     <!-- Create visit modal -->
-
     <!-- <div class="modal">
       <form action="#" class="modal__form">
         <h2 class="modal__name">Create visit</h2>
@@ -106,7 +151,7 @@
         <input type="text" class="modal__input" placeholder="Transferred diseases of the CS" />
         <input type="text" class="modal__input" placeholder="Age" />
         <button class="modal__button">Create visit</button>
-      </form> -->
-    <!-- </div> -->
+      </form>
+    </div> -->
   </body>
 </html>
