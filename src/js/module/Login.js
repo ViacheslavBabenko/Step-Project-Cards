@@ -1,5 +1,6 @@
 import Request from "./Request.js";
-import { USER } from "./constans.js";
+import { USER, noItemsText } from "./constans.js";
+import Card from "./Card.js";
 
 export default class Login {
   render() {
@@ -22,7 +23,15 @@ export default class Login {
             document.querySelector('.header__button--login').style.display = 'none';
             document.querySelector('.header__button--visit').style.display = 'block';
             document.querySelector('.modal').remove();
-            
+            request.getCards(USER.token).then(cards=>{
+              if(cards.length>0){
+                cards.forEach(card => {
+                  noItemsText.style.display = 'none';
+                  const newCard = new Card();
+                  document.querySelector('.cards-list').append(newCard.render(card));
+                });
+              }
+            })
         }else{
             invalidText.style.display = 'block';
         }
