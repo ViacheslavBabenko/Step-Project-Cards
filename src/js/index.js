@@ -16,19 +16,6 @@ const loginBtn = document.querySelector(".header__button--login");
 loginBtn.addEventListener("click", () => {
   const login = new Login();
   document.body.append(modal.render(login.render()));
-  
 });
 
  
-const obj = {
-  patient: 'Tom Black',
-  doctor: 'cardiologist', 
-  objectiveDesc: 'Description', 
-  shortDesc: 'short', 
-  urgency: 'high', 
-  otherInfo: {
-    'Age': 18
-  }
-}
-
-  request.setCard('401442a3-16b9-4ba4-9067-29dfb6b05e32', obj);
