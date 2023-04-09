@@ -5,11 +5,13 @@ import Request from "./module/Request.js";
 import Modal from "./module/Modal.js";
 import Login from "./module/Login.js";
 import Card from "./module/Card.js";
+import Filter from "./module/Filter";
 import { USER } from "./module/constans.js";
 
 const request = new Request();
 const modal = new Modal("");
 const card = new Card();
+const filter = new Filter();
 
 const loginBtn = document.querySelector(".header__button--login");
 
