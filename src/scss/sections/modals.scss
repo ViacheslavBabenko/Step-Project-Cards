@@ -1,5 +1,5 @@
 .modal {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display: flex;
@@ -14,11 +14,42 @@
   .modal__form {
     width: 594px;
     min-height: 520px;
-    background: rgba(236, 236, 236, 0.85);
+    background: rgb(236, 236, 236);
     border-radius: 32px;
     padding-top: 48px;
     padding-bottom: 48px;
+    position: relative;
   }
+  .modal-closed-btn {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: 36px;
+    top: 32px;
+    cursor: pointer;
+
+    .modal-closed-btn__line {
+        width: 15px;
+        height: 2px;
+        position: absolute;
+        background-color: black;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    
+        &:nth-of-type(1) {
+            top: 50%;
+            left: 7%;
+            transform:  rotate(45deg);  
+          }
+          &:nth-of-type(2) {
+            top: 50%;
+            transform:  rotate(-45deg); 
+          }
+    }
+  }
+
   .modal__name {
     font-weight: 700;
     font-size: 30px;
@@ -105,4 +136,5 @@
     margin-right: auto;
     position: relative;
     bottom: 48px;
+    cursor: pointer;
   }
