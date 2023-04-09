@@ -10,8 +10,9 @@
     background-color: rgba(0, 0, 0, 0.38);
     padding-top: 20px;
     padding-bottom: 20px;
+    z-index: 9999;
   }
-  .modal__form {
+  .modal__window {
     width: 594px;
     min-height: 520px;
     background: rgb(236, 236, 236);
@@ -125,6 +126,16 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 70px;
+  }
+
+  .modal__invalid-date{
+    display: none;
+    margin-left: 104px;
+    margin-top: 25px;
+    color: red;
+  }
+  .modal__invalid-date--active{
+    display: block;
   }
   .modal__button::before {
     content: " ";

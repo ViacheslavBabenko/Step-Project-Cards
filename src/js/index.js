@@ -1,36 +1,21 @@
 // Import styles
 import "../scss/style.scss";
-const openMoreBtns = document.querySelectorAll(".button--open-more");
-const openMoreBtnsArr = Array.from(openMoreBtns);
+// Import modules
+import Request from "./module/Request.js";
+import Modal from "./module/Modal.js";
+import Login from "./module/Login.js";
+import Card from "./module/Card.js";
+import { USER } from "./module/constans.js";
 
-openMoreBtnsArr.forEach((el) => {
-  el.addEventListener("click", (event) => {
-    if (event.target.closest(".button--open-more")) {
-      el.classList.toggle("active");
+const request = new Request();
+const modal = new Modal();
+const card = new Card();
 
-      const btn = el.closest(".card-item__buttons");
-      btn.classList.toggle("card-item__buttons--active");
+const loginBtn = document.querySelector(".header__button--login");
 
-      const card = el.closest(".card-item");
-      const cardInfo = card.querySelector(".card-item__info");
-      cardInfo.classList.toggle("card-item__info--active");
-    }
-  });
+loginBtn.addEventListener("click", () => {
+  const login = new Login();
+  document.body.append(modal.render(login.render()));
 });
 
-const closedBtns = document.querySelectorAll(".closed-btn");
-
-Array.from(closedBtns).forEach((el) => {
-  el.addEventListener("click", (event) => {
-    if (event.target.closest(".closed-btn")) {
-      el.closest(".card-item").remove();
-    }
-  });
-});
-
-function createEl(elName, className) {
-  const element = document.createElement(elName);
-  element.classList.add(className);
-  return element;
-}
-// const paragraph = createEl("p", "text");
+ 
