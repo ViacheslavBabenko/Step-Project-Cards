@@ -18,19 +18,24 @@ const loginBtn = document.querySelector(".header__button--login");
 loginBtn.addEventListener("click", () => {
   const login = new Login();
   document.body.append(modal.render(login.render()));
-  
 });
 
- 
 const obj = {
-  patient: 'Tom Black',
-  doctor: 'cardiologist', 
-  objectiveDesc: 'Description', 
-  shortDesc: 'short', 
-  urgency: 'high', 
+  patient: "Tom Black",
+  doctor: "cardiologist",
+  objectiveDesc: "Description",
+  shortDesc: "short",
+  urgency: "high",
   otherInfo: {
-    'Age': 18
-  }
-}
+    Age: 18,
+  },
+};
 
-  request.setCard('401442a3-16b9-4ba4-9067-29dfb6b05e32', obj);
+// request.setCard("6ec12806-d63d-4dc5-9def-6832631252cc", obj);
+// my token 6ec12806-d63d-4dc5-9def-6832631252cc
+
+// request.getCards("6ec12806-d63d-4dc5-9def-6832631252cc").then((cards) => {
+//   cards.forEach((element) => {
+//     request.deleteCard("6ec12806-d63d-4dc5-9def-6832631252cc", element.id);
+//   });
+// });
