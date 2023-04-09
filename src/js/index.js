@@ -1,6 +1,5 @@
 // Import styles
 import "../scss/style.scss";
-
 const openMoreBtns = document.querySelectorAll(".button--open-more");
 const openMoreBtnsArr = Array.from(openMoreBtns);
 
