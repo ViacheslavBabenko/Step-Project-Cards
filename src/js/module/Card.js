@@ -34,6 +34,13 @@ export default class Card{
                     card.remove()
                 }
             });
+            request.getCards(USER.token).then(cards=>{
+                console.log(cards);
+                if(cards.length === 1){
+                    console.log('df');
+                    noItemsText.style.display = 'block';
+                }
+              })
         });
         moreBtn.addEventListener('click', (event)=>{
             event.target.closest('.button--open-more').classList.toggle('active');
