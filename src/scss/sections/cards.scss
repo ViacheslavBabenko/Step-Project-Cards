@@ -41,6 +41,10 @@ body {
   box-sizing: border-box;
 }
 
+.card-item--hidden {
+  display: none;
+}
+
 .closed-btn {
   position: absolute;
   width: 15px;
@@ -101,6 +105,9 @@ body {
   line-height: 19px;
   margin-top: 0;
   margin-bottom: 12px;
+
+}
+.info__descr--urgency {
   span {
     color: rgba(89, 89, 89, 1);
   }
