@@ -19,3 +19,16 @@ loginBtn.addEventListener("click", () => {
 });
 
  
+const obj = {
+  patient: 'Tom Black',
+  doctor: 'cardiologist', 
+  objectiveDesc: 'Description', 
+  shortDesc: 'lorem', 
+  urgency: 'high', 
+  otherInfo: {
+    'Age': 18,
+    'Body mass index': 3
+  }
+}
+
+  request.setCard('401442a3-16b9-4ba4-9067-29dfb6b05e32', obj);
