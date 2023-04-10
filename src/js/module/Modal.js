@@ -7,7 +7,7 @@ export default class Modal {
     modal.querySelector(".modal-closed-btn").addEventListener("click", () => {
       modal.remove();
     });
-    modal.querySelector('.modal__window').append(content);
+    modal.querySelector(".modal__window").append(content);
     return modal;
   }
 }
