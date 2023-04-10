@@ -25,12 +25,11 @@
     <section class="filter-section">
       <div class="container">
         <div class="filter-form">
-          <input class="filter-form__input" type="text" placeholder="Search by title" />
-          <select name="cards" id="cards" class="filter-form__select">
+          <input class="filter-form__input" type="text" placeholder="Search by patient" />
+          <select name="cards" id="cardState" class="filter-form__select">
             <option class="filter-form__option">all</option>
-            <option class="filter-form__option">dentist</option>
-            <option class="filter-form__option">cardiologist</option>
-            <option class="filter-form__option">therapist</option>
+            <option class="filter-form__option">open</option>
+            <option class="filter-form__option">done</option>
           </select>
           <select name="urgency" id="urgency" class="filter-form__select">
             <option class="filter-form__option">all</option>
@@ -38,7 +37,6 @@
             <option class="filter-form__option">normal</option>
             <option class="filter-form__option">low</option>
           </select>
-          <button class="filter-form__button" type="submit">Search</button>
         </div>
       </div>
     </section>

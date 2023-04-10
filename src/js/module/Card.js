@@ -1,5 +1,5 @@
 import Request from "./Request.js";
-import { USER } from "./constans.js";
+import { USER, noItemsText } from "./constans.js";
 
 export default class Card{
     render(
@@ -35,9 +35,7 @@ export default class Card{
                 }
             });
             request.getCards(USER.token).then(cards=>{
-                console.log(cards);
                 if(cards.length === 1){
-                    console.log('df');
                     noItemsText.style.display = 'block';
                 }
               })
