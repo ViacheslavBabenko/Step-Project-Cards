@@ -19,16 +19,6 @@ loginBtn.addEventListener("click", () => {
   document.body.append(modal.render(login.render()));
 });
 
-// const obj = {
-//   patient: "Tom White",
-//   doctor: "dentist",
-//   objectiveDesc: "Description",
-//   shortDesc: "short",
-//   urgency: "low",
-//   otherInfo: {
-//     Age: 18,
-//   },
-// };
 const searchField = document.querySelector(".filter-form__input");
 const filterUrgency = document.querySelector("#urgency");
 const filterState = document.querySelector("#cardState");
@@ -36,30 +26,14 @@ const filterState = document.querySelector("#cardState");
 searchField.addEventListener("keyup", (e) => {
   const filter = new Filter();
   filter.findPatient();
-  filter.showNoItemsText();
 });
 
 filterUrgency.addEventListener("change", (e) => {
   const filter = new Filter();
   filter.findPatient();
-  filter.showNoItemsText();
 });
 
-// searchField.addEventListener("keyup", (e) => {
-//   const filter = new Filter();
-//   const value = e.target.value.trim().toLowerCase();
-//   filter.findPatient(value, ".card-item__patient");
-//   filter.showNoItemsText();
-// });
-
-// filterUrgency.addEventListener("change", (e) => {
-//   const filter = new Filter();
-//   const value = e.target.value.trim().toLowerCase();
-//   filter.findPatient(value, ".info__descr--urgency");
-//   filter.showNoItemsText();
-// });
-
-// filterState.addEventListener("change", (e) => {
-//   const value = e.target.value.trim().toLowerCase();
-//   filter.findPatient(value, ".info__descr--state");
-// });
+filterState.addEventListener("change", (e) => {
+  const filter = new Filter();
+  filter.findPatient();
+});
