@@ -57,4 +57,5 @@ export default class Card {
       .classList.toggle("card-item__buttons--active");
     infoBlock.classList.toggle("card-item__info--active");
   }
+  
 }

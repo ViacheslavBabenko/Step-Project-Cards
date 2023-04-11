@@ -1,5 +1,4 @@
 import Visit from "./Visit.js";
-
 export default class VisitCardiologist extends Visit {
   render() {
     return `<input type="text" class="modal__input body--mass" placeholder="Body mass index" />
@@ -8,3 +7,4 @@ export default class VisitCardiologist extends Visit {
          <input type="text" class="modal__input age--input" placeholder="Age" />`;
   }
 }
+

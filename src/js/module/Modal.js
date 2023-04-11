@@ -4,6 +4,7 @@ export default class Modal {
     modal.classList.add("modal");
     modal.innerHTML =
       '<div action="#" class="modal__window">      <div class="modal-closed-btn">        <span class="modal-closed-btn__line"></span>        <span class="modal-closed-btn__line"></span>      </div>    </div>';
+
     modal.querySelector(".modal-closed-btn").addEventListener("click", () => {
       document.body.style.overflow = "auto";
       modal.remove();

@@ -15,6 +15,7 @@ import { USER, noItemsText } from "./module/constans.js";
 
 const request = new Request();
 const modal = new Modal();
+
 const card = new Card();
 const visit = new Visit();
 const dentVisit = new VisitDentist();
@@ -60,3 +61,25 @@ filterState.addEventListener("change", (e) => {
   const filter = new Filter();
   filter.findPatient();
 });
+
+if (sessionStorage.getItem('token')) {
+  USER.token = sessionStorage.token;
+  request.getCards(USER.token).then((cards) => {
+    document.querySelector(".header__button--login").style.display = "none";
+    document.querySelector(".header__button--visit").style.display = "block";
+    if (cards.length > 0) {
+      cards.forEach((card) => {
+        noItemsText.style.display = "none";
+        const newCard = new Card();
+        document.querySelector(".cards-list").append(newCard.render(card));
+      });
+
+      searchField.value = sessionStorage.getItem('filterTitle');
+      filterUrgency.value = sessionStorage.getItem('filterUrgency');
+      filterState.value = sessionStorage.getItem('filterState');
+
+      const filter = new Filter();
+      filter.findPatient();
+    }
+  });
+}
