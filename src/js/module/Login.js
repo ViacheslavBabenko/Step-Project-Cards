@@ -41,13 +41,12 @@ export default class Login {
               "none";
             document.querySelector(".header__button--visit").style.display =
               "block";
-
             document.querySelector(".modal").remove();
 
             request.getCards(USER.token).then((cards) => {
               if (cards.length > 0) {
+                noItemsText.style.display = "none";
                 cards.forEach((card) => {
-                  noItemsText.style.display = "none";
                   const newCard = new Card();
                   document
                     .querySelector(".cards-list")
