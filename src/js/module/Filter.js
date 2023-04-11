@@ -5,7 +5,6 @@ export default class Filter {
   }
 
   findPatient() {
-    console.log(this.cards);
     try {
       this.cards.forEach((card) => {
         const patientString = card.querySelector(".card-item__patient").textContent.toLowerCase();
