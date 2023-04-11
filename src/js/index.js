@@ -10,7 +10,7 @@ import VisitDentist from "./module/VisitDentist.js";
 import VisitTherapist from "./module/VisitTherapist.js";
 import VisitCardiologist from "./module/VisitCardiologist.js";
 import ChangeVisit from "./module/ChangeVisit.js";
-import Filter from "./module/Filter";
+import Filter from "./module/Filter.js";
 import { USER, noItemsText } from "./module/constans.js";
 
 const request = new Request();
