@@ -1,3 +1,3 @@
 const USER = {};
-const noItemsText = document.querySelector('.no-cards-text');
-export {USER, noItemsText}
+const noItemsText = document.querySelector(".no-cards-text");
+export { USER, noItemsText };

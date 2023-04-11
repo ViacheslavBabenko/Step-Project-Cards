@@ -11,34 +11,39 @@ export default class Login {
     const loginBtn = form.querySelector(".modal__button");
     const email = form.querySelector(".login-email");
     const password = form.querySelector(".login-password");
-    const invalidText = form.querySelector('.modal__invalid-date');
+    const invalidText = form.querySelector(".modal__invalid-date");
 
     loginBtn.addEventListener("click", (e) => {
       e.preventDefault();
       const request = new Request();
-      request.login(email.value, password.value)
-      .then(token=>{
-        if(token !== 'Incorrect username or password'){
+      request
+        .login(email.value, password.value)
+        .then((token) => {
+          if (token !== "Incorrect username or password") {
             USER.token = token;
-            document.querySelector('.header__button--login').style.display = 'none';
-            document.querySelector('.header__button--visit').style.display = 'block';
-            document.querySelector('.modal').remove();
-            request.getCards(USER.token).then(cards=>{
-              if(cards.length>0){
-                cards.forEach(card => {
-                  noItemsText.style.display = 'none';
+            document.querySelector(".header__button--login").style.display =
+              "none";
+            document.querySelector(".header__button--visit").style.display =
+              "block";
+            document.querySelector(".modal").remove();
+            request.getCards(USER.token).then((cards) => {
+              if (cards.length > 0) {
+                noItemsText.style.display = "none";
+                cards.forEach((card) => {
                   const newCard = new Card();
-                  document.querySelector('.cards-list').append(newCard.render(card));
+                  document
+                    .querySelector(".cards-list")
+                    .append(newCard.render(card));
                 });
               }
-            })
-        }else{
-            invalidText.style.display = 'block';
-        }
-      })
-      .catch(error=>{
-        alert(error.message);
-      })
+            });
+          } else {
+            invalidText.style.display = "block";
+          }
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     });
     return form;
   }
