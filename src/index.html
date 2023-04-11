@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link rel="shortcut icon" href="#" type="image/x-icon" />
     <title>Medical Clinic</title>
   </head>
@@ -17,7 +20,9 @@
           <a class="header__logo" href="#">Medical Clinic</a>
           <div class="header__buttons">
             <a class="header__button header__button--login" href="#">Log in</a>
-            <a class="header__button header__button--visit" href="#">Create visit</a>
+            <a class="header__button header__button--visit" href="#"
+              >Create visit</a
+            >
           </div>
         </div>
       </div>
@@ -25,14 +30,18 @@
     <section class="filter-section">
       <div class="container">
         <div class="filter-form">
-          <input class="filter-form__input" type="text" placeholder="Search by patient" />
+          <input
+            class="filter-form__input"
+            type="text"
+            placeholder="Search by patient"
+          />
           <select name="cards" id="cardState" class="filter-form__select">
-            <option class="filter-form__option">all</option>
+            <option class="filter-form__option" selected>all</option>
             <option class="filter-form__option">open</option>
             <option class="filter-form__option">done</option>
           </select>
           <select name="urgency" id="urgency" class="filter-form__select">
-            <option class="filter-form__option">all</option>
+            <option class="filter-form__option" selected>all</option>
             <option class="filter-form__option">high</option>
             <option class="filter-form__option">normal</option>
             <option class="filter-form__option">low</option>
