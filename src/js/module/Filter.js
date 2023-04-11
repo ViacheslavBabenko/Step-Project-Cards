@@ -14,10 +14,10 @@ export default class Filter {
         const urgencyValue = document.querySelector("#urgency").value.trim().toLowerCase();
         const stateValue = document.querySelector("#cardState").value.trim().toLowerCase();
 
-        sessionStorage.setItem('filterTitle', patientValue);
-        sessionStorage.setItem('filterUrgency', urgencyValue);
-        sessionStorage.setItem('filterState', stateValue);
-        
+        sessionStorage.setItem("filterTitle", patientValue);
+        sessionStorage.setItem("filterUrgency", urgencyValue);
+        sessionStorage.setItem("filterState", stateValue);
+
         if (card.contains(card.querySelector(".active"))) {
           card.querySelector(".active").click();
         }

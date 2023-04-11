@@ -10,7 +10,7 @@ import VisitDentist from "./module/VisitDentist.js";
 import VisitTherapist from "./module/VisitTherapist.js";
 import VisitCardiologist from "./module/VisitCardiologist.js";
 import ChangeVisit from "./module/ChangeVisit.js";
-import Filter from "./module/Filter";
+import Filter from "./module/Filter.js";
 import { USER, noItemsText } from "./module/constans.js";
 
 const request = new Request();
@@ -32,15 +32,7 @@ loginBtn.addEventListener("click", () => {
 const createVisit = document.querySelector(".header__button--visit");
 createVisit.addEventListener("click", () => {
   const modal = new Modal();
-  document.body.append(
-    modal.render(
-      visit.render(
-        cardioVisit.render(),
-        dentVisit.render(),
-        therapVisit.render()
-      )
-    )
-  );
+  document.body.append(modal.render(visit.render(cardioVisit.render(), dentVisit.render(), therapVisit.render())));
 });
 
 const searchField = document.querySelector(".filter-form__input");
@@ -62,7 +54,7 @@ filterState.addEventListener("change", (e) => {
   filter.findPatient();
 });
 
-if (sessionStorage.getItem('token')) {
+if (sessionStorage.getItem("token")) {
   USER.token = sessionStorage.token;
   request.getCards(USER.token).then((cards) => {
     document.querySelector(".header__button--login").style.display = "none";
@@ -74,9 +66,9 @@ if (sessionStorage.getItem('token')) {
         document.querySelector(".cards-list").append(newCard.render(card));
       });
 
-      searchField.value = sessionStorage.getItem('filterTitle');
-      filterUrgency.value = sessionStorage.getItem('filterUrgency');
-      filterState.value = sessionStorage.getItem('filterState');
+      searchField.value = sessionStorage.getItem("filterTitle");
+      filterUrgency.value = sessionStorage.getItem("filterUrgency");
+      filterState.value = sessionStorage.getItem("filterState");
 
       const filter = new Filter();
       filter.findPatient();
