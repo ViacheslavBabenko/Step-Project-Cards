@@ -2,16 +2,7 @@ import Request from "./Request.js";
 import { USER, noItemsText } from "./constans.js";
 
 export default class Card {
-  render({
-    id,
-    patient,
-    doctor,
-    objectiveDesc,
-    state = "open",
-    shortDesc,
-    urgency,
-    otherInfo,
-  }) {
+  render({ id, patient, doctor, objectiveDesc, state = "open", shortDesc, urgency, otherInfo }) {
     const card = document.createElement("li");
     card.classList.add("card-item");
     card.id = id;
@@ -31,9 +22,7 @@ export default class Card {
     }
 
     deleteBtn.addEventListener("click", () => this.removeCard(card));
-    moreBtn.addEventListener("click", (event) =>
-      this.showMore(event, infoBlock)
-    );
+    moreBtn.addEventListener("click", (event) => this.showMore(event, infoBlock));
 
     return card;
   }
@@ -52,10 +41,7 @@ export default class Card {
   }
   showMore(event, infoBlock) {
     event.target.closest(".button--open-more").classList.toggle("active");
-    event.target
-      .closest(".card-item__buttons")
-      .classList.toggle("card-item__buttons--active");
+    event.target.closest(".card-item__buttons").classList.toggle("card-item__buttons--active");
     infoBlock.classList.toggle("card-item__info--active");
   }
-  
 }
