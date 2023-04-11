@@ -8,9 +8,10 @@ import Card from "./module/Card.js";
 import Visit from "./module/Visit.js";
 import VisitDentist from "./module/VisitDentist.js";
 import VisitTherapist from "./module/VisitTherapist.js";
-import { USER } from "./module/constans.js";
 import VisitCardiologist from "./module/VisitCardiologist.js";
 import ChangeVisit from "./module/ChangeVisit.js";
+import Filter from "./module/Filter";
+import { USER, noItemsText } from "./module/constans.js";
 
 const request = new Request();
 const modal = new Modal();
@@ -41,14 +42,21 @@ createVisit.addEventListener("click", () => {
   );
 });
 
-const obj = {
-  patient: "Tom Black",
-  doctor: "cardiologist",
-  objectiveDesc: "Description",
-  shortDesc: "lorem",
-  urgency: "high",
-  otherInfo: {
-    Age: 18,
-    "Body mass index": 3,
-  },
-};
+const searchField = document.querySelector(".filter-form__input");
+const filterUrgency = document.querySelector("#urgency");
+const filterState = document.querySelector("#cardState");
+
+searchField.addEventListener("keyup", (e) => {
+  const filter = new Filter();
+  filter.findPatient();
+});
+
+filterUrgency.addEventListener("change", (e) => {
+  const filter = new Filter();
+  filter.findPatient();
+});
+
+filterState.addEventListener("change", (e) => {
+  const filter = new Filter();
+  filter.findPatient();
+});

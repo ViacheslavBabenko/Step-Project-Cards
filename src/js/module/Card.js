@@ -7,6 +7,7 @@ export default class Card {
     patient,
     doctor,
     objectiveDesc,
+    state = "open",
     shortDesc,
     urgency,
     otherInfo,
@@ -29,26 +30,31 @@ export default class Card {
       }
     }
 
-    deleteBtn.addEventListener("click", () => {
-      const request = new Request();
-      request.deleteCard(USER.token, card.id).then((response) => {
-        if (response.status === 200) {
-          card.remove();
-        }
-      });
-      request.getCards(USER.token).then((cards) => {
-        if (cards.length === 1) {
-          noItemsText.style.display = "block";
-        }
-      });
-    });
-    moreBtn.addEventListener("click", (event) => {
-      event.target.closest(".button--open-more").classList.toggle("active");
-      event.target
-        .closest(".card-item__buttons")
-        .classList.toggle("card-item__buttons--active");
-      infoBlock.classList.toggle("card-item__info--active");
-    });
+    deleteBtn.addEventListener("click", () => this.removeCard(card));
+    moreBtn.addEventListener("click", (event) =>
+      this.showMore(event, infoBlock)
+    );
+
     return card;
+  }
+  removeCard(card) {
+    const request = new Request();
+    request.deleteCard(USER.token, card.id).then((response) => {
+      if (response.status === 200) {
+        card.remove();
+      }
+    });
+    request.getCards(USER.token).then((cards) => {
+      if (cards.length === 1) {
+        noItemsText.style.display = "block";
+      }
+    });
+  }
+  showMore(event, infoBlock) {
+    event.target.closest(".button--open-more").classList.toggle("active");
+    event.target
+      .closest(".card-item__buttons")
+      .classList.toggle("card-item__buttons--active");
+    infoBlock.classList.toggle("card-item__info--active");
   }
 }

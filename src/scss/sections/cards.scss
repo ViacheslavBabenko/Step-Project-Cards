@@ -3,6 +3,7 @@ body {
 }
 .cards-field {
   margin-top: 55px;
+  padding-bottom: 25px;
 }
 .container {
   max-width: 1300px;
@@ -26,7 +27,7 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 40px;
+  gap: 20px;
   flex-wrap: wrap;
   padding-left: 0;
 }
@@ -38,6 +39,10 @@ body {
   border-radius: 20px;
   width: 280px;
   box-sizing: border-box;
+}
+
+.card-item--hidden {
+  display: none;
 }
 
 .closed-btn {
@@ -100,6 +105,7 @@ body {
   line-height: 19px;
   margin-top: 0;
   margin-bottom: 12px;
+
 }
 .info__descr--urgency {
   span {
