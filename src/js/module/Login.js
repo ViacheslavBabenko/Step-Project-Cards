@@ -21,15 +21,19 @@ export default class Login {
         .then((token) => {
           if (token !== "Incorrect username or password") {
             USER.token = token;
-            document.querySelector(".header__button--login").style.display = "none";
-            document.querySelector(".header__button--visit").style.display = "block";
+            document.querySelector(".header__button--login").style.display =
+              "none";
+            document.querySelector(".header__button--visit").style.display =
+              "block";
             document.querySelector(".modal").remove();
             request.getCards(USER.token).then((cards) => {
               if (cards.length > 0) {
+                noItemsText.style.display = "none";
                 cards.forEach((card) => {
-                  noItemsText.style.display = "none";
                   const newCard = new Card();
-                  document.querySelector(".cards-list").append(newCard.render(card));
+                  document
+                    .querySelector(".cards-list")
+                    .append(newCard.render(card));
                 });
               }
             });

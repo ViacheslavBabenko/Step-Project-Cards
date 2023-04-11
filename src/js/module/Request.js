@@ -16,15 +16,27 @@ export default class Request {
       },
     }).then((response) => response.json());
   }
-  setCard(token, cardObj) {
-    return fetch("https://ajax.test-danit.com/api/v2/cards", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(cardObj),
-    }).then((response) => response.json());
+  async setCard(token, cardObj) {
+    try {
+      const response = await fetch("https://ajax.test-danit.com/api/v2/cards", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(cardObj),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed with status " + response.status);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   }
   changeCard(token, cardId, cardObj) {
     return fetch(`https://ajax.test-danit.com/api/v2/cards/${cardId}`, {
@@ -33,16 +45,16 @@ export default class Request {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(cardObj)
+      body: JSON.stringify(cardObj),
     }).then((response) => response.json());
   }
-  deleteCard(token, cardId){
+  deleteCard(token, cardId) {
     return fetch(`https://ajax.test-danit.com/api/v2/cards/${cardId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
-      }
+      },
     });
   }
 }
