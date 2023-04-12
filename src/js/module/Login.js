@@ -41,7 +41,6 @@ export default class Login {
               "none";
             document.querySelector(".header__button--visit").style.display =
               "block";
-            document.querySelector(".modal").remove();
 
             request.getCards(USER.token).then((cards) => {
               if (cards.length > 0) {
@@ -59,6 +58,7 @@ export default class Login {
           }
         })
         .catch((error) => {
+          console.error(error);
           alert(error.message);
         });
     });

@@ -10,7 +10,7 @@ export default class ChangeVisit extends Visit {
       patient,
       doctor,
       objectiveDesc,
-      state,
+      state='open',
       shortDesc,
       urgency,
       otherInfo,
@@ -24,8 +24,16 @@ export default class ChangeVisit extends Visit {
     const shortDescription = form.querySelector(".description--visit");
     const selUrgency = form.querySelector(".urgency--select");
     const patientName = form.querySelector(".name--input");
+    const inputsDiv = form.querySelector(".inputs--div");
     const changeBtn = form.querySelector(".modal__button");
 
+    const stateInput = document.createElement("select");
+    stateInput.classList.add('modal__select');
+    stateInput.innerHTML = `
+    <option value="open" selected>Open</option>
+    <option value="done">Done</option>`
+    
+    
     modalTitle.textContent = "Change visit";
     Array.from(selDoc.options)
       .find((option) => option.value === doctor)
@@ -38,7 +46,6 @@ export default class ChangeVisit extends Visit {
     patientName.value = patient;
     changeBtn.textContent = "Change visit";
 
-    const inputsDiv = form.querySelector(".inputs--div");
     if (doctor === "Dentist") {
       inputsDiv.innerHTML = dentist;
     } else if (doctor === "Cardiologist") {
@@ -46,6 +53,8 @@ export default class ChangeVisit extends Visit {
     } else if (doctor === "Therapist") {
       inputsDiv.innerHTML = therapist;
     }
+    inputsDiv.append(stateInput);
+
     changeBtn.insertAdjacentElement("beforebegin", inputsDiv);
     changeBtn.addEventListener("click", () => {
       this.changeCard(form, card);
@@ -54,11 +63,21 @@ export default class ChangeVisit extends Visit {
   }
   changeCard(form, card) {
     const formObj = super.setObj(form);
-    const updatedCard = new Card();
-    updatedCard.render(formObj);
+    
     const request = new Request();
     request.changeCard(USER.token, card.id, formObj).then((response) => {
-      
+      console.log(response);
+      const patientName = card.querySelector('.card-item__patient');
+      const doctorName = card.querySelector('.card-item__doctor');
+      const infoBlock = card.querySelector('.card-item__info');
+
+      patientName.textContent = response.patient;
+      doctorName.textContent = response.doctor;
+
+      const updatedCard = new Card();
+      const newCardInfo = updatedCard.render(formObj).querySelector('.card-item__info');
+
+      infoBlock.innerHTML = newCardInfo.innerHTML;
     });
   }
 }
