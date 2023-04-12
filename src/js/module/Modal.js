@@ -16,6 +16,9 @@ export default class Modal {
         modal.remove();
       }
     });
+    modal.querySelector(".modal__button").addEventListener("click", () => {
+      modal.remove();
+    });
     return modal;
   }
 }

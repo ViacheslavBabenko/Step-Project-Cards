@@ -1,8 +1,23 @@
 import Request from "./Request.js";
 import { USER, noItemsText } from "./constans.js";
-
+import Modal from "./Modal.js";
+import ChangeVisit from "./ChangeVisit.js";
+import VisitCardiologist from "./VisitCardiologist.js";
+import VisitDentist from "./VisitDentist.js";
+import VisitTherapist from "./VisitTherapist.js";
 export default class Card {
-  render({ id, patient, doctor, objectiveDesc, state = "open", shortDesc, urgency, otherInfo }) {
+  render(obj) {
+    const {
+      id,
+      patient,
+      doctor,
+      objectiveDesc,
+      state = "Open",
+      shortDesc,
+      urgency,
+      otherInfo,
+    } = obj;
+
     const card = document.createElement("li");
     card.classList.add("card-item");
     card.id = id;
@@ -70,6 +85,7 @@ export default class Card {
     const infoBlock = card.querySelector(".card-item__info");
     const deleteBtn = card.querySelector(".closed-btn");
     const moreBtn = card.querySelector(".button--open-more");
+    const editBtn = card.querySelector(".button--edit");
 
     for (const info in otherInfo) {
       if (Object.hasOwnProperty.call(otherInfo, info)) {
@@ -81,8 +97,11 @@ export default class Card {
     }
 
     deleteBtn.addEventListener("click", () => this.removeCard(card));
-    moreBtn.addEventListener("click", (event) => this.showMore(event, infoBlock));
+    moreBtn.addEventListener("click", (event) =>
+      this.showMore(event, infoBlock)
+    );
 
+    editBtn.addEventListener("click", () => this.editCard(obj, card));
     return card;
   }
   removeCard(card) {
@@ -100,7 +119,28 @@ export default class Card {
   }
   showMore(event, infoBlock) {
     event.target.closest(".button--open-more").classList.toggle("active");
-    event.target.closest(".card-item__buttons").classList.toggle("card-item__buttons--active");
+    event.target
+      .closest(".card-item__buttons")
+      .classList.toggle("card-item__buttons--active");
     infoBlock.classList.toggle("card-item__info--active");
+  }
+  editCard(cardObj, card) {
+    const cardio = new VisitCardiologist();
+    const dentist = new VisitDentist();
+    const therap = new VisitTherapist();
+    const modal = new Modal();
+    const changeVisit = new ChangeVisit();
+
+    document.body.append(
+      modal.render(
+        changeVisit.render(
+          cardio.render(cardObj.otherInfo),
+          dentist.render(cardObj.otherInfo),
+          therap.render(cardObj.otherInfo),
+          cardObj,
+          card
+        )
+      )
+    );
   }
 }
