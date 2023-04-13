@@ -12,7 +12,7 @@ export default class Card {
       patient,
       doctor,
       objectiveDesc,
-      state = "Open",
+      state,
       shortDesc,
       urgency,
       otherInfo,
@@ -130,17 +130,20 @@ export default class Card {
     const therap = new VisitTherapist();
     const modal = new Modal();
     const changeVisit = new ChangeVisit();
+    const request = new Request();
 
-    document.body.append(
-      modal.render(
-        changeVisit.render(
-          cardio.render(cardObj.otherInfo),
-          dentist.render(cardObj.otherInfo),
-          therap.render(cardObj.otherInfo),
-          cardObj,
-          card
+    request.getCard(USER.token, card.id).then((response) => {
+      document.body.append(
+        modal.render(
+          changeVisit.render(
+            cardio.render(response.otherInfo),
+            dentist.render(response.otherInfo),
+            therap.render(response.otherInfo),
+            response,
+            card
+          )
         )
-      )
-    );
+      );
+    });
   }
 }

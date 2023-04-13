@@ -2,7 +2,7 @@ import Visit from "./Visit.js";
 import Card from "./Card.js";
 import Request from "./Request.js";
 import { USER } from "./constans.js";
-
+import validateForm from "./validateForm.js";
 export default class ChangeVisit extends Visit {
   render(cardio, dentist, therapist, obj, card) {
     const {
@@ -26,6 +26,13 @@ export default class ChangeVisit extends Visit {
     const patientName = form.querySelector(".name--input");
     const changeBtn = form.querySelector(".modal__button");
 
+    const stateSelect = form.querySelector(".state--select");
+    stateSelect.removeAttribute("hidden");
+    stateSelect.setAttribute("visible", "");
+    Array.from(stateSelect.options)
+      .find((option) => option.value === state)
+      .setAttribute("selected", "");
+
     modalTitle.textContent = "Change visit";
     Array.from(selDoc.options)
       .find((option) => option.value === doctor)
@@ -46,7 +53,6 @@ export default class ChangeVisit extends Visit {
     } else if (doctor === "Therapist") {
       inputsDiv.innerHTML = therapist;
     }
-    changeBtn.insertAdjacentElement("beforebegin", inputsDiv);
     changeBtn.addEventListener("click", () => {
       this.changeCard(form, card);
     });
@@ -54,11 +60,20 @@ export default class ChangeVisit extends Visit {
   }
   changeCard(form, card) {
     const formObj = super.setObj(form);
-    const updatedCard = new Card();
-    updatedCard.render(formObj);
+    const newCard = new Card();
+    const invalidMessage = form.querySelector(".modal__invalid-date");
+    const updatedCard = newCard.render(formObj);
     const request = new Request();
-    request.changeCard(USER.token, card.id, formObj).then((response) => {
-      
-    });
+    try {
+      if (validateForm(form, invalidMessage)) {
+        document.querySelector(".modal").remove();
+        request.changeCard(USER.token, card.id, formObj);
+        updatedCard.id = card.id;
+        card.replaceWith(updatedCard);
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error);
+    }
   }
 }

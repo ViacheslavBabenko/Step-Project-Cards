@@ -11,14 +11,13 @@ export default class Visit {
     form.action = "#";
 
     form.innerHTML = `
-
     <h2 class="modal__name">Create visit</h2>
     <select name="" id="" class="modal__select">
         <option value="none" disabled selected hidden class="modal__select-option">Select doctor</option>
         <option value="Cardiologist">Cardiologist</option>
         <option value="Dentist">Dentist</option>
         <option value="Therapist">Therapist</option>
-      </select>
+    </select>
       <input type="text" class="modal__input purpose--visit" placeholder="The purpose of the visit" />
       <input type="text" class="modal__input description--visit" placeholder="A brief description of the visit" />
       <select name="" id="" class="modal__select urgency--select">
@@ -27,13 +26,17 @@ export default class Visit {
       <option value="normal">Normal</option>
       <option value="low">Low</option>
     </select>
+  <select name="" id="" hidden class="modal__select state--select">
+    <option value="open">Open</option>
+    <option value="done">Done</option>
+  </select>
     <input type="text" class="modal__input name--input" placeholder="Name" />
     <div class="inputs--div"></div>
+    <p class="modal__invalid-date">Enter all values</p>
     <button class="modal__button">Create visit</button>
     `;
     const inputsDiv = form.querySelector(".inputs--div");
     const selectDoc = form.querySelector(".modal__select");
-    const btn = form.querySelector(".modal__button");
     selectDoc.addEventListener("change", () => {
       const docValue = selectDoc.value;
       inputsDiv.innerHTML = "";
@@ -44,7 +47,6 @@ export default class Visit {
       } else if (docValue === "Therapist") {
         inputsDiv.innerHTML = therapeft;
       }
-      btn.insertAdjacentElement("beforebegin", inputsDiv);
     });
     return form;
   }
@@ -62,8 +64,10 @@ export default class Visit {
 
     const otherInfo = {};
 
+    const state = form.querySelector(".state--select").value;
+
     const docValue = selectDoc.value;
-    if (docValue === "cardio") {
+    if (docValue === "Cardiologist") {
       const cs = form.querySelector(".cs--input").value || null;
       const weigth = form.querySelector(".body--mass").value || null;
       const pressure = form.querySelector(".pressure-input").value || null;
@@ -72,26 +76,29 @@ export default class Visit {
         (otherInfo.pressure = pressure),
         (otherInfo.cs = cs),
         (otherInfo.age = age);
-    } else if (docValue === "dentist") {
+    } else if (docValue === "Dentist") {
       const lastVisit = form.querySelector(".lastvisit--input").value || null;
       otherInfo["Last Visit"] = lastVisit;
-    } else if (docValue === "therapeft") {
+    } else if (docValue === "Therapist") {
       const age = form.querySelector(".age--input").value || null;
       otherInfo.age = age;
     } else {
       alert("Choose the doctor!");
+      return false;
     }
     const obj = {
       patient: patient,
       doctor: doctor,
       objectiveDesc: objectiveDesc,
       shortDesc: shortDesc,
+      state: state,
       urgency: urgency,
       otherInfo,
     };
     return obj;
   }
-  cardRequest(obj) {
+  cardRequest(obj, form) {
+    const invalidMessage = form.querySelector(".modal__invalid-date");
     try {
       const { patient, doctor, objectiveDesc, shortDesc, urgency, otherInfo } =
         obj;
@@ -101,8 +108,9 @@ export default class Visit {
         objectiveDesc !== null &&
         shortDesc !== null &&
         urgency !== null &&
-        validateOtherInfo(otherInfo)
+        validateOtherInfo(otherInfo, invalidMessage)
       ) {
+        document.querySelector(".modal").remove();
         const request = new Request();
         request.setCard(USER.token, obj).then((response) => {
           const card = new Card();

@@ -1,7 +1,8 @@
-export default function validateOtherInfo(otherInfo) {
+export default function validateOtherInfo(otherInfo, par) {
   for (let key in otherInfo) {
     if (otherInfo[key] === null || otherInfo[key] === undefined) {
-      return false;
+      par.style.display = "block";
+      throw new Error("Complite all the values!");
     }
   }
   return true;

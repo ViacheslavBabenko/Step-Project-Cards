@@ -39,7 +39,7 @@ createVisit.addEventListener("click", () => {
   const requestBtn = visitForm.querySelector(".modal__button");
   requestBtn.addEventListener("click", () => {
     const obj = visit.setObj(visitForm);
-    visit.cardRequest(obj);
+    visit.cardRequest(obj, visitForm);
   });
 });
 
