@@ -868,7 +868,8 @@ class ChangeVisit extends _Visit_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
     } else if (doctor === "Therapist") {
       inputsDiv.innerHTML = therapist;
     }
-    changeBtn.addEventListener("click", () => {
+    changeBtn.addEventListener("click", e => {
+      e.preventDefault();
       this.changeCard(form, card);
     });
     return form;
