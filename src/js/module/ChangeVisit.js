@@ -10,7 +10,7 @@ export default class ChangeVisit extends Visit {
       patient,
       doctor,
       objectiveDesc,
-      state,
+      state = "open",
       shortDesc,
       urgency,
       otherInfo,
@@ -24,6 +24,7 @@ export default class ChangeVisit extends Visit {
     const shortDescription = form.querySelector(".description--visit");
     const selUrgency = form.querySelector(".urgency--select");
     const patientName = form.querySelector(".name--input");
+    const inputsDiv = form.querySelector(".inputs--div");
     const changeBtn = form.querySelector(".modal__button");
 
     const stateSelect = form.querySelector(".state--select");
@@ -45,7 +46,6 @@ export default class ChangeVisit extends Visit {
     patientName.value = patient;
     changeBtn.textContent = "Change visit";
 
-    const inputsDiv = form.querySelector(".inputs--div");
     if (doctor === "Dentist") {
       inputsDiv.innerHTML = dentist;
     } else if (doctor === "Cardiologist") {

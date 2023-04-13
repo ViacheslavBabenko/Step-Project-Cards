@@ -58,6 +58,7 @@ export default class Login {
           }
         })
         .catch((error) => {
+          console.error(error);
           alert(error.message);
         });
     });

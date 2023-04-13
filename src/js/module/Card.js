@@ -112,7 +112,8 @@ export default class Card {
       }
     });
     request.getCards(USER.token).then((cards) => {
-      if (cards.length === 1) {
+      console.log(cards.length);
+      if (cards.length === 1 || cards.length === 0) {
         noItemsText.style.display = "block";
       }
     });
