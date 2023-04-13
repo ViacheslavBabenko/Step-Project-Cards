@@ -120,9 +120,7 @@ export default class Visit {
             noItemsText.style.display = "none";
           }
         });
-      } else {
-        throw new Error("Please enter all the values");
-      }
+      } 
     } catch (error) {
       console.error(error);
       alert(error);
