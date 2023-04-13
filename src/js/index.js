@@ -9,10 +9,8 @@ import Visit from "./module/Visit.js";
 import VisitDentist from "./module/VisitDentist.js";
 import VisitTherapist from "./module/VisitTherapist.js";
 import VisitCardiologist from "./module/VisitCardiologist.js";
-import ChangeVisit from "./module/ChangeVisit.js";
 import Filter from "./module/Filter.js";
 import { USER, noItemsText } from "./module/constans.js";
-
 const request = new Request();
 const modal = new Modal();
 
@@ -21,7 +19,6 @@ const visit = new Visit();
 const dentVisit = new VisitDentist();
 const therapVisit = new VisitTherapist();
 const cardioVisit = new VisitCardiologist();
-
 const loginBtn = document.querySelector(".header__button--login");
 
 loginBtn.addEventListener("click", () => {
@@ -32,7 +29,18 @@ loginBtn.addEventListener("click", () => {
 const createVisit = document.querySelector(".header__button--visit");
 createVisit.addEventListener("click", () => {
   const modal = new Modal();
-  document.body.append(modal.render(visit.render(cardioVisit.render(), dentVisit.render(), therapVisit.render())));
+  const visit = new Visit();
+  const visitForm = visit.render(
+    cardioVisit.render(),
+    dentVisit.render(),
+    therapVisit.render()
+  );
+  document.body.append(modal.render(visitForm));
+  const requestBtn = visitForm.querySelector(".modal__button");
+  requestBtn.addEventListener("click", () => {
+    const obj = visit.setObj(visitForm);
+    visit.cardRequest(obj, visitForm);
+  });
 });
 
 const searchField = document.querySelector(".filter-form__input");

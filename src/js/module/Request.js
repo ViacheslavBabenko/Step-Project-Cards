@@ -57,4 +57,12 @@ export default class Request {
       },
     });
   }
+  getCard(token, id) {
+    return fetch(`https://ajax.test-danit.com/api/v2/cards/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((response) => response.json());
+  }
 }
