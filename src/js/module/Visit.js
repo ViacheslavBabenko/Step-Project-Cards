@@ -99,7 +99,6 @@ export default class Visit {
   }
   cardRequest(obj, form) {
     const invalidMessage = form.querySelector(".modal__invalid-date");
-    try {
       const { patient, doctor, objectiveDesc, shortDesc, urgency, otherInfo } =
         obj;
       if (
@@ -121,10 +120,5 @@ export default class Visit {
           }
         });
       } 
-    } catch (error) {
-      console.error(error);
-      alert(error);
-      return false;
-    }
   }
 }
