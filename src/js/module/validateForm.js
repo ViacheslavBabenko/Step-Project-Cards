@@ -10,7 +10,6 @@ export default function validateForm(form, par) {
       (!input.selectedOptions || !input.selectedOptions.length)
     ) {
       par.style.display = "block";
-      throw new Error("Заповніть усі поля форми!");
       return false;
     }
   }

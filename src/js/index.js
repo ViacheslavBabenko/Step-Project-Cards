@@ -31,7 +31,8 @@ createVisit.addEventListener("click", () => {
   const visitForm = visit.render(cardioVisit.render(), dentVisit.render(), therapVisit.render());
   document.body.append(modal.render(visitForm));
   const requestBtn = visitForm.querySelector(".modal__button");
-  requestBtn.addEventListener("click", () => {
+  requestBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     const obj = visit.setObj(visitForm);
     visit.cardRequest(obj, visitForm);
   });
@@ -40,6 +41,10 @@ createVisit.addEventListener("click", () => {
 const searchField = document.querySelector(".filter-form__input");
 const filterUrgency = document.querySelector("#urgency");
 const filterState = document.querySelector("#cardState");
+
+sessionStorage.setItem("filterTitle", searchField.value);
+sessionStorage.setItem("filterUrgency", filterUrgency.value);
+sessionStorage.setItem("filterState", filterState.value);
 
 searchField.addEventListener("keyup", (e) => {
   const filter = new Filter();
