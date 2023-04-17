@@ -65,16 +65,11 @@ export default class ChangeVisit extends Visit {
     const invalidMessage = form.querySelector(".modal__invalid-date");
     const updatedCard = newCard.render(formObj);
     const request = new Request();
-    try {
-      if (validateForm(form, invalidMessage)) {
-        document.querySelector(".modal").remove();
-        request.changeCard(USER.token, card.id, formObj);
-        updatedCard.id = card.id;
-        card.replaceWith(updatedCard);
-      }
-    } catch (error) {
-      console.error(error);
-      alert(error);
+    if (validateForm(form, invalidMessage)) {
+      document.querySelector(".modal").remove();
+      request.changeCard(USER.token, card.id, formObj);
+      updatedCard.id = card.id;
+      card.replaceWith(updatedCard);
     }
   }
 }
