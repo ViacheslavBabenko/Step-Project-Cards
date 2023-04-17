@@ -28,13 +28,7 @@ loginBtn.addEventListener("click", () => {
 
 const createVisit = document.querySelector(".header__button--visit");
 createVisit.addEventListener("click", () => {
-  const modal = new Modal();
-  const visit = new Visit();
-  const visitForm = visit.render(
-    cardioVisit.render(),
-    dentVisit.render(),
-    therapVisit.render()
-  );
+  const visitForm = visit.render(cardioVisit.render(), dentVisit.render(), therapVisit.render());
   document.body.append(modal.render(visitForm));
   const requestBtn = visitForm.querySelector(".modal__button");
   requestBtn.addEventListener("click", () => {
