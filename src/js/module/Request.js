@@ -6,7 +6,11 @@ export default class Request {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email: email, password: password }),
-    }).then((response) => response.text());
+    })
+      .then((response) => response.text())
+      .catch((error) => {
+        console.error(error.message);
+      });
   }
   getCards(token) {
     return fetch("https://ajax.test-danit.com/api/v2/cards", {
@@ -14,29 +18,30 @@ export default class Request {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then((response) => response.json());
-  }
-  async setCard(token, cardObj) {
-    try {
-      const response = await fetch("https://ajax.test-danit.com/api/v2/cards", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(cardObj),
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error(error.message);
       });
-
-      if (!response.ok) {
-        throw new Error("Request failed with status " + response.status);
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
+  }
+  setCard(token, cardObj) {
+    return fetch("https://ajax.test-danit.com/api/v2/cards", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(cardObj),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error();
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
   }
   changeCard(token, cardId, cardObj) {
     return fetch(`https://ajax.test-danit.com/api/v2/cards/${cardId}`, {
@@ -46,7 +51,11 @@ export default class Request {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(cardObj),
-    }).then((response) => response.json());
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error(error.message);
+      });
   }
   deleteCard(token, cardId) {
     return fetch(`https://ajax.test-danit.com/api/v2/cards/${cardId}`, {
@@ -55,6 +64,8 @@ export default class Request {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+    }).catch((error) => {
+      console.error(error.message);
     });
   }
   getCard(token, id) {
@@ -63,6 +74,10 @@ export default class Request {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then((response) => response.json());
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error(error.message);
+      });
   }
 }
